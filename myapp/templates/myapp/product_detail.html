@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Detail</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            padding: 20px;
+        }
+        img {
+            max-width: 600px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .product-info {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-top: 20px;
+        }
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        form {
+            margin-top: 20px;
+        }
+        .top-nav {
+            background-color: silver;
+            color: black;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .top-nav .left-menu {
+            display: flex;
+            align-items: center;
+        }
+        .top-nav .left-menu a {
+            text-decoration: none;
+            color: white;
+            margin-right: 20px;
+        }
+        .top-nav .left-menu a:hover {
+            text-decoration: underline;
+        }
+        .top-nav .right-menu a {
+            text-decoration: none;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            margin-left: 10px;
+        }
+        .top-nav .right-menu a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-nav">
+        <div class="left-menu">
+            <a href="{% url 'product_list' %}">Return to Product List</a>
+        </div>
+        <div class="right-menu">
+            {% if user.is_authenticated %}
+                <a href="{% url 'cart' %}">Cart ({{ request.user.cart_items.count }})</a>
+                <a href="{% url 'logout' %}">logout</a>
+                welcome, {{ user.username }}!
+            {% else %}
+                <a href="{% url 'login' %}">login</a>
+                <a href="{% url 'signup' %}">signup</a>
+            {% endif %}
+        </div>
+    </div>
+    <h1>{{ product.name }}</h1>
+    <div class="product-info">
+        {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        {% endif %}
+        <p><strong>Description:</strong> {{ product.description }}</p>
+        <p><strong>Price:</strong> ${{ product.price }}</p>
+        <p><strong>Stock:</strong> {{ product.stock }}</p>
+
+        <!-- 添加到购物车的表单 -->
+        <form action="{% url 'add_to_cart' product.id %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Add to Cart</button>
+        </form>
+    </div>
+
+</body>
+</html>

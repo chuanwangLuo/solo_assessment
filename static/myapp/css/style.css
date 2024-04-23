@@ -1,0 +1,17 @@
+.top-nav {
+    display: flex;
+    justify-content: flex-end; /* 右对齐导航 */
+    background-color: #f8f9fa; /* 浅灰背景色 */
+    padding: 10px;
+}
+
+.right-menu a {
+    text-decoration: none;
+    color: #007bff; /* 蓝色链接 */
+    padding: 8px 15px;
+    margin: 0 10px;
+}
+
+.right-menu a:hover {
+    color: #0056b3; /* 鼠标悬停时的颜色 */
+}

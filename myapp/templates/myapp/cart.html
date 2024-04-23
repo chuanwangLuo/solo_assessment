@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Cart</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+            margin: 0;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: #fff;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        form {
+            margin-top: 20px;
+        }
+        button {
+            background-color: white;
+            color: black;
+            border: 1px solid #ccc;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+        .top-nav {
+            background-color: white;
+            color: black;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .top-nav .left-menu {
+            display: flex;
+            align-items: center;
+        }
+        .top-nav .left-menu a {
+            text-decoration: none;
+            color: black;
+            margin-right: 20px;
+        }
+        .top-nav .left-menu a:hover {
+            text-decoration: underline;
+        }
+        .top-nav .right-menu a {
+            text-decoration: none;
+            color: black;
+            padding: 8px 15px;
+            border-radius: 5px;
+            margin-left: 10px;
+        }
+        .top-nav .right-menu a:hover {
+            background-color: #007bff;
+            color: white;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="top-nav">
+        <div class="left-menu">
+            <a href="{% url 'product_list' %}">Return to Product List</a>
+        </div>
+        <div class="right-menu">
+            {% if user.is_authenticated %}
+                <a href="{% url 'cart' %}">Cart ({{ request.user.cart_items.count }})</a>
+                <a href="{% url 'logout' %}">logout</a>
+                welcome, {{ user.username }}!
+            {% else %}
+                <a href="{% url 'login' %}">login</a>
+                <a href="{% url 'signup' %}">signup</a>
+            {% endif %}
+        </div>
+    </div>
+    <h1>Your Cart</h1>
+    <form method="post" action="{% url 'update_cart' %}">
+        {% csrf_token %}
+        <ul>
+            {% for item in cart_items %}
+            <li>
+                {{ item.product.name }} - amount: {{ item.quantity }}
+                {% if item.product.id %}
+                    <a href="{% url 'product_detail' item.product.id %}">View Product</a>
+                {% else %}
+                    <span>Product details not available</span>
+                {% endif %}
+                <form action="{% url 'update_cart' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="item_id" value="{{ item.id }}">
+                    <input type="number" name="quantity-{{ item.id }}" value="{{ item.quantity }}" min="1">
+                    <button type="submit" name="update" value="{{ item.id }}">Update</button>
+                    <button type="submit" name="remove" value="{{ item.id }}">Remove</button>
+                </form>
+            </li>
+            {% empty %}
+            <li>Your cart is empty.</li>
+            {% endfor %}
+        </ul>
+    </form>
+
+
+    <form action="{% url 'product_detail' request.session.last_product_id %}" method="get">
+        <button type="submit">Return to Last Viewed Product</button>
+    </form>
+
+    <form method="post" action="{% url 'purchase_items' %}">
+        {% csrf_token %}
+        <button type="submit">Purchase</button>
+    </form>
+
+</body>
+</html>
