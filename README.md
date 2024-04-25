@@ -53,7 +53,7 @@ Run the automated tests with the following command:
 
 ## Deployment
 
-the website is :
+URL of project on pythonanywhere.com:
 
         t04cl23.pythonanywhere.com
 
