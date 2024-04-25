@@ -6,7 +6,7 @@ This is a Web application based on the Django framework that displays product in
 
 The following guide will help you get the project up and running in a local environment for development and testing.
 
-### Prerequisites
+## Prerequisites
 
 Before you start, you need to install the following software:
 
@@ -24,7 +24,7 @@ git clone https://github.com/chuanwangLuo/solo_assessment.git
 cd solo Assessment
 
 
-# First, create the basics
+## First, create the basics
 Create a new project folder called 'temperature_stories' and then cd into the folder via the terminal and execute these commands:
 
     pyenv local 3.10.7 # this sets the local version of python to 3.10.7
