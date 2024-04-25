@@ -48,10 +48,14 @@ If you're doing this on another platform, then you might need to use this instea
 
 ## Run the test
 Run the automated tests with the following command:
+
         python manage.py test
 
 ## Deployment
-t04cl23.pythonanywhere.com
+
+the website is :
+
+        t04cl23.pythonanywhere.com
 
 ## The technology used
 
