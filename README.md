@@ -71,7 +71,7 @@ At the bottom of the configuration page, there is usually a "Reload" button. Cli
 
 URL of project on pythonanywhere.com:
 
-        t04cl23.pythonanywhere.com
+         http://t04cl23.pythonanywhere.com/
 
 ## The technology used
 
