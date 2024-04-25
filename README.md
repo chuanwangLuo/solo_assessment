@@ -52,6 +52,22 @@ Run the automated tests with the following command:
         python manage.py test
 
 ## Deployment
+1. Log into your PythonAnywhere account:
+Open a browser, access PythonAnywhere, and log into your account.
+2. Navigate to the Web application configuration page:
+On the PythonAnywhere dashboard, click the "Web" TAB at the top, which will take you to a list of your web applications.
+3. Find your web application configuration:
+In your list of web apps, find the app you want to modify and click the "Configure" link next to it.
+4. Modify the Source code path:
+On the web application configuration page, find the "Code" section, which lists the path to "Source code".
+Click the pen edit icon next to the source code path. This will allow you to modify the path.
+Change the path to the absolute path of the repository you just cloned from GitHub. Usually this path is similar to/home/yourusername/yourrepository, including yourusername is your PythonAnywhere user name, and yourrepository is you clone warehouse folder name.
+5. Save your changes:
+Make sure the path you entered is correct and save your changes.
+Reload your web application:
+After changing the path, you usually need to reload your web application for the change to take effect.
+At the bottom of the configuration page, there is usually a "Reload" button. Click this button to restart your web application.
+6. Once you've completed the above steps, your PythonAnywhere web application will point to your GitHub repository directory and run from there. Make sure that this directory contains all the necessary Python files and related configurations for your application to work properly.
 
 URL of project on pythonanywhere.com:
 
