@@ -14,23 +14,22 @@ Before you start, you need to install the following software:
 - Django 4.1.2
 - For other dependencies, refer to the requirements.txt file
 
-You can install the required Python package with the following command:
+###You can install the required Python package with the following command:
 
-```bash
-pip install -r requirements.txt
+        pip install -r requirements.txt
 
-git clone https://github.com/chuanwangLuo/solo_assessment.git
+        git clone https://github.com/chuanwangLuo/solo_assessment.git
 
-cd solo Assessment
+        cd solo Assessment
 
 
 ## First, create the basics
 Create a new project folder called 'temperature_stories' and then cd into the folder via the terminal and execute these commands:
 
-    pyenv local 3.10.7 # this sets the local version of python to 3.10.7
-    python3 -m venv .venv # this creates the virtual environment for you
-    source .venv/bin/activate # this activates the virtual environment
-    pip install --upgrade pip [ this is optional]  # this installs pip, and upgrades it if required.
+        pyenv local 3.10.7 # this sets the local version of python to 3.10.7
+        python3 -m venv .venv # this creates the virtual environment for you
+        source .venv/bin/activate # this activates the virtual environment
+        pip install --upgrade pip [ this is optional]  # this installs pip, and upgrades it if required.
 
 We will use Django (https://www.djangoproject.com) as our web framework for the application. We install that with 
         
