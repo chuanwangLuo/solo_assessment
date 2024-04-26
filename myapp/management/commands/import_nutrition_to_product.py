@@ -6,7 +6,7 @@ class Command(BaseCommand):
     help = 'Imports data from Nutrition model to Product model'
 
     def handle(self, *args, **options):
-        batch_size = 100  # 每次处理100个对象
+        batch_size = 100  # Process 100 objects at a time
         total_count = Nutrition.objects.count()
         for start in range(0, total_count, batch_size):
             end = start + batch_size

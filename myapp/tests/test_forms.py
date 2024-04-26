@@ -9,7 +9,7 @@ class ProductExistenceTest(TestCase):
         Product.objects.create(name="Cornstarch", price=6.46)
 
     def test_product_existence(self):
-        """检查特定商品是否存在"""
+        """ Check for the presence of a particular commodity """
         exists = Product.objects.filter(name="Cornstarch").exists()
         self.assertTrue(exists)
 
@@ -17,7 +17,7 @@ class ProductExistenceTest(TestCase):
 
 class AccessControlTest(TestCase):
     def test_cart_access_for_unauthenticated_user(self):
-        """测试未认证用户访问购物车是否被重定向到登录页面"""
+        """ Tests if unauthenticated users accessing the cart is redirected to the login page """
         response = self.client.get(reverse('cart'))
         self.assertRedirects(response, f"{reverse('login')}?next={reverse('cart')}")
 
@@ -26,6 +26,6 @@ class AccessControlTest(TestCase):
 
 class ProductDataIntegrityTest(TestCase):
     def test_product_creation_without_price(self):
-        """尝试创建没有价格的商品应该抛出错误"""
+        """ Trying to create an item without a price should throw an error """
         with self.assertRaises(ValidationError):
             Product.objects.create(name="Incomplete Product").full_clean()

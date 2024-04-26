@@ -39,7 +39,7 @@ class CartItem(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='cart_items')
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
-    is_purchased = models.BooleanField(default=False)  # 添加购买状态字段
+    is_purchased = models.BooleanField(default=False)  # Add purchase status field
 
     def __str__(self):
         return f"{self.quantity} x {self.product.name}"

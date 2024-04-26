@@ -31,26 +31,26 @@ class CartTest(TestCase):
 
     def test_add_to_cart(self):
         response = self.client.post(f'/add-to-cart/{self.product.id}/')
-        self.assertEqual(response.status_code, 302)  # 假设加入购物车后会重定向
+        self.assertEqual(response.status_code, 302)  # Assume redirection after adding to cart
 
 
 class PurchaseTest(TestCase):
     def setUp(self):
-        # 创建用户并登录
+        # Create a user and log in
         self.user = User.objects.create_user(username='testuser', password='testpassword')
         self.client.login(username='testuser', password='testpassword')
 
-        # 创建产品
+        # Create Products
         self.product = Product.objects.create(name="Test Product", price=19.99, stock=10)
 
-        # 创建购物车项目
+        # Create a shopping cart item
         self.cart_item = CartItem.objects.create(user=self.user, product=self.product, quantity=1, is_purchased=False)
 
     def test_purchase_items(self):
-        # 模拟购买操作
+        # Simulate the purchase operation
         response = self.client.post('/purchase-items/')
         self.cart_item.refresh_from_db()
 
-        # 检查是否购买成功
+        # Check whether the purchase was successful
         self.assertTrue(self.cart_item.is_purchased)
         self.assertEqual(response.status_code, 302)

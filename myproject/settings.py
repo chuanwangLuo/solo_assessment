@@ -15,8 +15,8 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # 媒体文件存放的绝对路径
-MEDIA_URL = '/media/'  # 用于访问媒体文件的URL
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Absolute path for media files
+MEDIA_URL = '/media/'  # URL used to access media files
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -121,7 +121,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),  # 添加这行指向你的全局静态文件目录
+    os.path.join(BASE_DIR, 'static'),  # Add this line to point to your global static file directory
 ]
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
